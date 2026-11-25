@@ -3,354 +3,462 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suhas Rahul Sachidanandan | Machine Learning Engineer</title>
-<meta name="description" content="Suhas Rahul Sachidanandan, Machine Learning Engineer focused on computer vision, image processing, on-device AI and agentic AI.">
+<title>Suhas Rahul Sachidanandan · ML Engineer, Computer Vision &amp; Agentic AI</title>
+<meta name="description" content="Suhas Rahul Sachidanandan: machine learning engineer in the San Francisco Bay Area focused on computer vision, on-device AI and agentic LLM systems. Gen AI/ML Developer at Saayam For All.">
+<meta property="og:title" content="Suhas Rahul Sachidanandan · ML Engineer">
+<meta property="og:description" content="Computer vision, on-device AI and agentic LLM systems. Projects, hackathons, research and experience.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://suhasrahul.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>👁️</text></svg>">
 <style>
   :root {
-    color-scheme: light dark;
-    --bg: #fafaf9;
+    --bg: #fbfaf7;
     --surface: #ffffff;
-    --text: #1c1917;
-    --muted: #57534e;
-    --border: #e7e5e4;
-    --accent: #0f6e6e;
-    --accent-text: #ffffff;
-    --chip: #f0efed;
+    --text: #17181c;
+    --muted: #4a4d57;
+    --line: #dedbd2;
+    --accent: #0b5cad;
+    --accent-soft: #e6effa;
+    --tag-bg: #f1efe9;
+    --live: #1d7a3e;
+    --radius: 14px;
+    --max: 1040px;
+    --font: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --bg: #121212;
-      --surface: #1c1c1c;
-      --text: #ececec;
-      --muted: #a8a29e;
-      --border: #2e2e2e;
-      --accent: #5ec4c4;
-      --accent-text: #0b1f1f;
-      --chip: #262626;
+      --bg: #111216;
+      --surface: #191b21;
+      --text: #f1f1f3;
+      --muted: #b9bcc6;
+      --line: #2c2f38;
+      --accent: #7db7ff;
+      --accent-soft: #1b2a3d;
+      --tag-bg: #23262e;
+      --live: #5fd38a;
     }
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
   body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--text);
-    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    -webkit-text-size-adjust: 100%;
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: var(--font); font-size: 18px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
   }
-  a { color: var(--accent); }
-  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  .wrap { max-width: 860px; margin: 0 auto; padding: 0 20px; }
+  a { color: var(--accent); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .skip { position: absolute; left: -999px; top: 8px; background: var(--accent); color: #fff; padding: 8px 14px; border-radius: 8px; z-index: 100; }
+  .skip:focus { left: 8px; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 24px; }
 
-  nav {
-    position: sticky; top: 0; z-index: 10;
+  /* Nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
     background: color-mix(in srgb, var(--bg) 88%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
+    backdrop-filter: saturate(160%) blur(10px);
+    border-bottom: 1px solid var(--line);
   }
-  nav .wrap { display: flex; gap: 18px; overflow-x: auto; padding-block: 12px; white-space: nowrap; }
-  nav a { color: var(--muted); text-decoration: none; font-size: 0.9rem; }
-  nav a:hover { color: var(--text); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 64px; }
+  .brand { font-weight: 700; text-decoration: none; color: var(--text); letter-spacing: -0.01em; white-space: nowrap; }
+  .nav ul { list-style: none; display: flex; gap: 4px; margin: 0; padding: 0; overflow-x: auto; scrollbar-width: none; }
+  .nav ul::-webkit-scrollbar { display: none; }
+  .nav a.link { display: block; padding: 6px 10px; border-radius: 8px; color: var(--muted); text-decoration: none; font-size: 16px; white-space: nowrap; }
+  .nav a.link:hover { color: var(--text); background: var(--tag-bg); }
+  @media (max-width: 760px) { .brand span { display: none; } }
 
-  header { padding: 64px 0 40px; }
-  h1 { font-size: clamp(2rem, 6vw, 2.9rem); line-height: 1.15; margin: 0 0 10px; letter-spacing: -0.02em; }
-  .headline { font-size: clamp(1.05rem, 2.6vw, 1.3rem); color: var(--accent); margin: 0 0 6px; font-weight: 600; }
-  .location { color: var(--muted); margin: 0 0 22px; }
-  .summary { max-width: 70ch; margin: 0 0 28px; }
-  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  /* Hero */
+  .hero { padding-top: 72px; padding-bottom: 56px; }
+  .eyebrow { font-family: var(--mono); font-size: 14px; color: var(--muted); letter-spacing: 0.04em; margin: 0 0 14px; }
+  .hero h1 { font-size: clamp(36px, 6vw, 60px); line-height: 1.08; letter-spacing: -0.025em; margin: 0 0 18px; }
+  .hero .lede { font-size: clamp(19px, 2.2vw, 22px); color: var(--muted); max-width: 46ch; margin: 0 0 26px; }
+  .now {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 16px;
+    padding: 8px 16px; font-size: 16px; margin-bottom: 28px;
+  }
+  .dot { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; background: var(--live); box-shadow: 0 0 0 4px color-mix(in srgb, var(--live) 22%, transparent); }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
   .btn {
-    display: inline-block; padding: 11px 20px; border-radius: 8px;
-    font-weight: 600; text-decoration: none; border: 1px solid var(--accent);
+    display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 10px;
+    font-weight: 600; font-size: 16px; text-decoration: none; border: 1px solid var(--line);
+    color: var(--text); background: var(--surface);
   }
-  .btn-primary { background: var(--accent); color: var(--accent-text); }
-  .btn-secondary { color: var(--accent); }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #0b1220; } }
+  .btn:hover { transform: translateY(-1px); }
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 44px; }
+  .stat { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
+  .stat b { display: block; font-size: 26px; letter-spacing: -0.02em; }
+  .stat span { color: var(--muted); font-size: 15px; }
+  @media (max-width: 760px) { .stats { grid-template-columns: repeat(2, 1fr); } }
 
-  section { padding: 36px 0; border-top: 1px solid var(--border); }
-  h2 { font-size: 1.4rem; margin: 0 0 20px; letter-spacing: -0.01em; }
-  h3 { font-size: 1.08rem; margin: 0; }
-  .sub { font-size: 1rem; color: var(--muted); margin: 26px 0 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-
+  /* Sections */
+  section { padding: 56px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 30px; letter-spacing: -0.02em; margin: 0 0 8px; }
+  .sub { color: var(--muted); margin: 0 0 28px; max-width: 60ch; }
+  h3 { font-size: 21px; margin: 0; letter-spacing: -0.01em; line-height: 1.3; }
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  @media (max-width: 820px) { .grid { grid-template-columns: 1fr; } }
   .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 20px 22px; margin-bottom: 16px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 22px 20px; display: flex; flex-direction: column; gap: 10px;
   }
-  .card-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; align-items: baseline; }
-  .meta { color: var(--muted); font-size: 0.92rem; margin: 4px 0 0; }
-  .card ul { margin: 12px 0 0; padding-left: 20px; }
-  .card li { margin-bottom: 6px; }
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; padding: 0; list-style: none; }
-  .tags li { background: var(--chip); border-radius: 999px; padding: 2px 10px; font-size: 0.82rem; margin: 0; }
-  .repo { font-size: 0.9rem; font-weight: 600; white-space: nowrap; }
-
-  .skills { display: grid; gap: 14px; }
-  .skills div { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 16px 20px; }
-  .skills h3 { margin-bottom: 6px; font-size: 1rem; }
-  .skills p { margin: 0; color: var(--muted); }
-
-  .list { list-style: none; padding: 0; margin: 0; }
-  .list li { padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .list li:last-child { border-bottom: 0; }
-
-  footer { border-top: 1px solid var(--border); padding: 32px 0 48px; color: var(--muted); }
-  footer ul { list-style: none; padding: 0; margin: 0 0 12px; display: flex; flex-wrap: wrap; gap: 20px; }
-
-  @media (min-width: 700px) {
-    .skills { grid-template-columns: 1fr 1fr; }
+  .card.feature { grid-column: 1 / -1; }
+  .meta { font-size: 15px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 6px 14px; }
+  .badge {
+    display: inline-block; font-size: 13px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+    background: var(--accent-soft); color: var(--accent); letter-spacing: 0.01em;
   }
-  @media print {
-    nav, .actions { display: none; }
-    .card, .skills div { break-inside: avoid; }
-  }
+  .badge.green { background: color-mix(in srgb, var(--live) 15%, transparent); color: var(--live); }
+  .card ul { margin: 2px 0 0; padding-left: 20px; }
+  .card li { margin: 4px 0; }
+  .card p { margin: 0; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+  .tag { font-family: var(--mono); font-size: 13px; background: var(--tag-bg); color: var(--muted); padding: 3px 8px; border-radius: 6px; }
+  .links { display: flex; flex-wrap: wrap; gap: 14px; font-size: 16px; font-weight: 600; }
+
+  /* Experience timeline */
+  .job { display: grid; grid-template-columns: 200px 1fr; gap: 24px; padding: 22px 0; border-bottom: 1px dashed var(--line); }
+  .job:last-child { border-bottom: 0; }
+  .job .when { color: var(--muted); font-size: 16px; }
+  .job h3 { margin-bottom: 2px; }
+  .job .org { color: var(--muted); margin: 0 0 8px; }
+  .job ul { margin: 0; padding-left: 20px; }
+  .job li { margin: 5px 0; }
+  @media (max-width: 720px) { .job { grid-template-columns: 1fr; gap: 6px; } }
+
+  /* Lists */
+  .pubs { list-style: none; padding: 0; margin: 0; counter-reset: p; }
+  .pubs li { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; margin-bottom: 12px; }
+  .pubs .title { font-weight: 700; font-size: 19px; }
+  .pubs .venue { color: var(--muted); }
+  .compact { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 900px) { .compact { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .compact { grid-template-columns: 1fr; } }
+  .mini { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .mini h4 { margin: 0 0 4px; font-size: 17px; }
+  .mini p { margin: 0; font-size: 16px; color: var(--muted); }
+  .skills { display: grid; grid-template-columns: 220px 1fr; gap: 10px 24px; margin: 0; }
+  .skills dt { font-weight: 700; }
+  .skills dd { margin: 0; color: var(--muted); }
+  @media (max-width: 720px) { .skills { grid-template-columns: 1fr; } .skills dd { margin-bottom: 10px; } }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+  @media (max-width: 820px) { .two { grid-template-columns: 1fr; } }
+  .plain { list-style: none; padding: 0; margin: 0; }
+  .plain li { padding: 10px 0; border-bottom: 1px dashed var(--line); }
+  .plain li:last-child { border-bottom: 0; }
+  .plain small { color: var(--muted); font-size: 15px; display: block; }
+
+  footer { border-top: 1px solid var(--line); padding: 48px 0 64px; }
+  footer h2 { margin-bottom: 10px; }
+  .fine { color: var(--muted); font-size: 15px; margin-top: 28px; }
 </style>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
 
-<nav aria-label="Sections">
+<header class="nav">
   <div class="wrap">
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#skills">Skills</a>
-    <a href="#education">Education</a>
-    <a href="#publications">Publications</a>
-    <a href="#certifications">Certifications</a>
-    <a href="#contact">Contact</a>
+    <a class="brand" href="#top">Suhas Rahul<span> Sachidanandan</span></a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a class="link" href="#experience">Experience</a></li>
+        <li><a class="link" href="#hackathons">Hackathons</a></li>
+        <li><a class="link" href="#projects">Projects</a></li>
+        <li><a class="link" href="#research">Research</a></li>
+        <li><a class="link" href="#skills">Skills</a></li>
+        <li><a class="link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
   </div>
-</nav>
+</header>
 
-<main class="wrap">
-  <header>
+<main id="main">
+  <div class="wrap hero" id="top">
+    <p class="eyebrow">ML ENGINEER · SAN FRANCISCO BAY AREA</p>
     <h1>Suhas Rahul Sachidanandan</h1>
-    <p class="headline">Machine Learning Engineer, Computer Vision and Agentic AI</p>
-    <p class="location">Hayward, CA (San Francisco Bay Area)</p>
-    <p class="summary">
-      Machine learning engineer focused on computer vision, image processing, and on-device AI, with an M.S. in
-      Information Systems. Currently building an explainable AI photo editor with GPU shader rendering, a PyTorch
-      training pipeline, and INT8 TensorFlow Lite inference, and developing LLM-powered services as a Gen AI/ML
-      Developer at Saayam For All. Builds and self-hosts agentic AI systems (Hermes Agent, OpenClaw) and shipped
-      two multi-tool agents at an Open Source AI Week hackathon. Published ML researcher with experience in deep
-      learning (CNNs, LSTMs), data pipelines, Docker-based deployment, and AWS and Azure cloud.
-    </p>
-    <div class="actions">
-      <a class="btn btn-primary" href="resume.pdf" download>Download Resume (PDF)</a>
-      <a class="btn btn-secondary" href="#contact">Contact</a>
+    <p class="lede">I build computer vision, on-device AI and agentic LLM systems that explain themselves and run where the data lives.</p>
+    <div class="now"><span class="dot" aria-hidden="true"></span><span><strong>Now:</strong> Gen AI/ML Developer at <a href="https://github.com/saayam-for-all">Saayam For All</a>, building its generative AI microservice</span></div>
+    <div class="cta">
+      <a class="btn primary" href="resume.pdf">Résumé (PDF)</a>
+      <a class="btn" href="https://github.com/suhasrahul">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/suhasrahul">LinkedIn</a>
+      <a class="btn" href="mailto:suhasrahulac@gmail.com">Email me</a>
     </div>
-  </header>
+    <div class="stats" role="list">
+      <div class="stat" role="listitem"><b>4</b><span>hackathon builds, Oct–Nov 2026</span></div>
+      <div class="stat" role="listitem"><b>2</b><span>published research papers</span></div>
+      <div class="stat" role="listitem"><b>3.9</b><span>M.S. GPA, Cleveland State</span></div>
+      <div class="stat" role="listitem"><b>24/7</b><span>self-hosted AI agents in my homelab</span></div>
+    </div>
+  </div>
 
-  <section id="projects">
-    <h2>Projects</h2>
+  <!-- EXPERIENCE -->
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <h2 id="exp-h">Experience</h2>
+      <p class="sub">From networks and databases to production LLM services.</p>
 
-    <h3 class="sub">Agentic AI</h3>
+      <div class="job">
+        <div class="when">Oct 2026 – Present<br><span class="badge green">Current</span></div>
+        <div>
+          <h3>Gen AI/ML Developer</h3>
+          <p class="org">Saayam For All · Generative AI Microservice (Python) team · Remote</p>
+          <ul>
+            <li>Develop the LLM microservice behind Saayam's help-request platform, which classifies incoming requests into categories, generates subjects and answers, and finds relevant organizations.</li>
+            <li>Work with a multi-provider model chain: open-weights models served on Groq with Gemini as fallback, orchestrated with LangGraph.</li>
+            <li>During onboarding, built a tool-calling emergency-number lookup and a 32-case evaluation harness for the subject generator.</li>
+            <li>Contribute to model-reliability work: detecting provider failures and making outages surface as clear errors instead of silent fallbacks.</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">LangGraph</span><span class="tag">Groq</span><span class="tag">Gemini</span><span class="tag">pytest</span><span class="tag">AWS Lambda</span></div>
+        </div>
+      </div>
 
-    <article class="card">
-      <div class="card-head">
-        <h3>Accessibility Regression Agent</h3>
-        <a class="repo" href="https://github.com/suhasrahul/silent-breakage-agent">View on GitHub &rarr;</a>
+      <div class="job">
+        <div class="when">Aug 2022 – Feb 2023</div>
+        <div>
+          <h3>IT Intern</h3>
+          <p class="org">Smart Infotech · India</p>
+          <ul>
+            <li>Designed and maintained a student portal and database system with secure authentication, serving 500+ students at 99.9% uptime.</li>
+            <li>Built dashboards for students to track academic performance, attendance and progress.</li>
+          </ul>
+        </div>
       </div>
-      <p class="meta">Cline &times; Parallel &times; Composio Hackathon, Open Source AI Week, San Francisco, Oct 2026</p>
-      <ul>
-        <li>Built a solo end-to-end agent that catches accessibility regressions introduced by UI library updates, which pass builds and tests but silently lock out screen reader and keyboard users.</li>
-        <li>Scans the page before and after an update with Playwright and axe-core, diffs the results, researches the library changelog with Parallel, and explains each regression in plain language with an open-source LLM, separating fixes in the app from bugs in the library.</li>
-        <li>Uses Cline in headless mode to fix app-side issues on a separate branch, re-scans to verify, and files a GitHub issue report through Composio; a human always approves, and the agent never merges.</li>
-      </ul>
-      <ul class="tags"><li>Python</li><li>Playwright</li><li>axe-core</li><li>Parallel</li><li>Cline</li><li>Composio</li><li>Open-source LLM</li></ul>
-    </article>
 
-    <article class="card">
-      <div class="card-head">
-        <h3>Fashion Finder Agent</h3>
-        <a class="repo" href="https://github.com/suhasrahul/fashion-finder-bot">View on GitHub &rarr;</a>
-      </div>
-      <p class="meta">Team project, Cline &times; Parallel &times; Composio Hackathon, Open Source AI Week, Oct 2026</p>
-      <ul>
-        <li>Owned the Telegram bot for a team agent: users send a photo of an outfit, a vision model describes the clothing, and Parallel searches secondhand and retail sites for the closest matches within budget.</li>
-        <li>Built conversational refinement (&ldquo;same in green,&rdquo; &ldquo;cheaper&rdquo;), inline confirmation buttons, and saved favorites, with a mock backend contract so the bot was built and tested before teammates&rsquo; services were ready.</li>
-      </ul>
-      <ul class="tags"><li>Python</li><li>python-telegram-bot</li><li>Parallel</li><li>Vision LLM</li></ul>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>Self-Hosted Personal AI Agents: Hermes Agent and OpenClaw</h3>
-      </div>
-      <p class="meta">In progress</p>
-      <ul>
-        <li>Run Hermes Agent (Nous Research), an open-source personal agent, in a homelab isolated from the main machine to contain the risk of prompt injection and credential exposure.</li>
-        <li>Deployed OpenClaw agentic AI in an isolated Docker container with Telegram integration via the BotFather API and multi-model failover; local Ollama integration in progress for privacy.</li>
-        <li>Host both agents on a Proxmox homelab managing multiple Linux Containers, alongside self-hosted Code Server, Pi-hole, Jellyfin, Samba, and Syncthing.</li>
-      </ul>
-      <ul class="tags"><li>Proxmox</li><li>LXC</li><li>Docker</li><li>Linux</li><li>Telegram</li></ul>
-    </article>
-
-    <h3 class="sub">Computer Vision and Machine Learning</h3>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>Explainable AI Mobile Photo Editor</h3>
-      </div>
-      <p class="meta">In progress</p>
-      <ul>
-        <li>Building an offline iOS and Android photo editor whose AI diagnoses each photo, explains its findings, and sets real, editable sliders instead of generating pixels, keeping the app under 25 MB.</li>
-        <li>Implemented statistical image diagnosis: Rec. 709 luminance histograms, clipping percentage, color-cast channel ratios, saturation distribution, and Laplacian energy for sharpness.</li>
-        <li>Rendered all pixel processing in GLSL fragment shaders on the GPU, with live screen-resolution preview and full-resolution export from one parameter set.</li>
-        <li>Generating training labels from MIT-Adobe FiveK by porting the shader to a differentiable PyTorch function and fitting 7 parameters to 5 experts&rsquo; edits, producing up to 25,000 labels.</li>
-        <li>Training a MobileNetV3 regression model that predicts a bounded residual over a rule-based baseline, with out-of-distribution confidence; deployed on-device as INT8 TensorFlow Lite.</li>
-        <li>Integrated MediaPipe segmentation for background removal; evaluating with per-parameter MAE, SSIM, and PSNR against baselines plus a blind preference study.</li>
-      </ul>
-      <ul class="tags"><li>Flutter</li><li>Dart</li><li>GLSL</li><li>PyTorch</li><li>TensorFlow Lite</li><li>MediaPipe</li></ul>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>Retinal Disease Detection using CNN</h3>
-      </div>
-      <ul>
-        <li>Developed a convolutional neural network for binary classification of retinal images to support early detection of retinal disease, achieving high classification accuracy.</li>
-      </ul>
-      <ul class="tags"><li>TensorFlow</li><li>Keras</li></ul>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>IT Incident SLA Prediction</h3>
-      </div>
-      <ul>
-        <li>Built an ETL pipeline collapsing a 141,712-row event log into 24,918 incident records, with a leakage audit and stratified validation, using only fields available when a ticket opens.</li>
-        <li>Compared logistic regression, random forest, and XGBoost against a majority-class baseline; XGBoost raised ROC-AUC from 0.803 to 0.839 and, with threshold tuning, reached 0.80 recall on SLA misses.</li>
-        <li>Handled class imbalance with class weighting, calibrated probabilities with Platt scaling, and proposed a deployment and monitoring plan estimated to prevent about 1,750 SLA breaches per year.</li>
-      </ul>
-      <ul class="tags"><li>Python</li><li>pandas</li><li>scikit-learn</li><li>XGBoost</li></ul>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>Stock Market Prediction using LSTM Neural Networks</h3>
-      </div>
-      <p class="meta">Published in TIJER</p>
-      <ul>
-        <li>Built an LSTM time-series forecasting model on historical stock data, reaching 95% RMSE accuracy.</li>
-        <li>Engineered moving averages, volatility indicators, and technical analysis features with normalization and sequence preparation.</li>
-      </ul>
-      <ul class="tags"><li>Python</li><li>TensorFlow</li></ul>
-    </article>
-  </section>
-
-  <section id="experience">
-    <h2>Experience</h2>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>Gen AI/ML Developer</h3>
-        <span class="meta">Oct 2026 &ndash; Present</span>
-      </div>
-      <p class="meta">Saayam For All, San Jose, CA (Remote)</p>
-      <ul>
-        <li>Contribute to LLM-powered services for a nonprofit platform that matches people&rsquo;s help requests with volunteers, built on hosted language models (Groq) and AWS Lambda.</li>
-        <li>Set up and tested the LLM request-categorization service; identified taxonomy gaps and overlapping categories that lead to plausible but incorrect classifications.</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>IT Intern</h3>
-        <span class="meta">Aug 2022 &ndash; Feb 2023</span>
-      </div>
-      <p class="meta">Smart Infotech, India</p>
-      <ul>
-        <li>Designed and maintained a student portal and database system with secure authentication, serving 500+ students at 99.9% uptime.</li>
-        <li>Built data visualization dashboards for students to track academic performance, attendance, and progress.</li>
-      </ul>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <h3>Network Engineer Intern</h3>
-        <span class="meta">Oct 2021 &ndash; Feb 2022</span>
-      </div>
-      <p class="meta">CISCO Network Academy, India</p>
-      <ul>
-        <li>Deployed IPv6 infrastructure for a 200+ user business network and configured Cisco routers and switches, reducing latency by 25% through QoS.</li>
-        <li>Resolved 50+ complex network issues through systematic troubleshooting and protocol analysis.</li>
-      </ul>
-    </article>
-  </section>
-
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div>
-        <h3>Computer Vision and Image Processing</h3>
-        <p>Image classification, image segmentation, color and tone analysis, histogram analysis, Laplacian sharpness estimation, GPU image processing, differentiable rendering, MediaPipe</p>
-      </div>
-      <div>
-        <h3>Machine Learning</h3>
-        <p>PyTorch, TensorFlow, Keras, TensorFlow Lite, scikit-learn, CNNs, MobileNetV3, LSTM, Random Forest, XGBoost, INT8 quantization, model evaluation (ROC-AUC, recall, MAE, SSIM, PSNR)</p>
-      </div>
-      <div>
-        <h3>Agentic AI and LLMs</h3>
-        <p>Hermes Agent, OpenClaw, Cline, Composio, Parallel (Search, Extract), LLM APIs (Groq, Gemini), tool calling, Telegram bots, Playwright, axe-core</p>
-      </div>
-      <div>
-        <h3>Languages</h3>
-        <p>Python, Dart, C++, C, SQL, R, Java, JavaScript, GLSL, Bash</p>
-      </div>
-      <div>
-        <h3>Mobile and Graphics</h3>
-        <p>Flutter, Riverpod, GLSL fragment shaders, OpenGL, Android Studio</p>
-      </div>
-      <div>
-        <h3>Infrastructure and Data</h3>
-        <p>Docker, Linux, Proxmox, Git, AWS, Azure, Google Colab, MySQL, MongoDB, pandas, NumPy, Tableau, ETL</p>
+      <div class="job">
+        <div class="when">Oct 2021 – Feb 2022</div>
+        <div>
+          <h3>Network Engineer Intern</h3>
+          <p class="org">Cisco Networking Academy · India</p>
+          <ul>
+            <li>Deployed IPv6 infrastructure for a 200+ user business network; configured Cisco routers and switches, cutting latency 25% with QoS.</li>
+            <li>Resolved 50+ network issues through systematic troubleshooting and protocol analysis.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <section id="education">
-    <h2>Education</h2>
-    <article class="card">
-      <div class="card-head">
-        <h3>Master of Science in Information Systems</h3>
-        <span class="meta">Aug 2024 &ndash; May 2026</span>
+  <!-- HACKATHONS -->
+  <section id="hackathons" aria-labelledby="hack-h">
+    <div class="wrap">
+      <h2 id="hack-h">Hackathons</h2>
+      <p class="sub">Four agent builds in San Francisco, October and November 2026: one solo, three with teams.</p>
+      <div class="grid">
+
+        <article class="card feature">
+          <div class="meta"><span class="badge">tokens&amp; × AWS Personal Agents Hackathon</span><span>San Francisco · Nov 2026</span><span>Team of 2</span><span class="badge green">Live</span></div>
+          <h3>HOARDR: a free-stuff hunting agent with an audit trail</h3>
+          <p>Good free items get posted every day and disappear within hours, buried among junk and scams. HOARDR watches a live free-listings feed, judges every post, drops the junk and alerts you only when something is worth the trip. Every keeper comes with a receipt showing its score, the questions the agent asked, what the photos showed and a price estimate. Built in one day for the brief "a shopping agent with an audit trail."</p>
+          <ul>
+            <li><strong>The model answers questions; code makes decisions.</strong> One LLM call per listing returns typed answers about authenticity, scams, condition, hazards and fit. Plain code then applies vetoes and a weighted score to mark each listing Keeper, Maybe or Pass.</li>
+            <li>Promising listings get a second, photo-based check: a quality gate for blur, exposure and resolution, then a vision model that tests whether the photos match the text. Unclear photos can never confirm a keeper.</li>
+            <li>Each scan runs as a durable workflow with live event streaming. Claims wait for your one-tap approval and are clearly labeled as simulated.</li>
+            <li>Logs every judgment to SingleStore as the audit trail, keeps a memory of your taste in a Cognee knowledge graph, and checks claim safety with Firedrill drills. Every integration falls back to a local equivalent.</li>
+          </ul>
+          <div class="tags"><span class="tag">Next.js</span><span class="tag">TypeScript</span><span class="tag">Vercel AI SDK</span><span class="tag">Vercel Workflow</span><span class="tag">SingleStore</span><span class="tag">Cognee</span><span class="tag">Firedrill</span><span class="tag">sharp</span></div>
+          <div class="links"><a href="https://hoardr.vercel.app">Live demo →</a><a href="https://github.com/suhasrahul/hoardr">Repo →</a></div>
+        </article>
+
+        <article class="card feature">
+          <div class="meta"><span class="badge">Dell × NVIDIA AI Hackathon</span><span>San Francisco · Oct 2026</span><span>Team of 5 · Local agent platform lead</span></div>
+          <h3>DealDesk Local: a private pricing agent for enterprise sales</h3>
+          <p>An always-on agent that helps sales reps build quotes they can defend and flags deals when rising supplier costs push margins below policy. All AI inference runs on a Dell Pro Max with NVIDIA GB10.</p>
+          <ul>
+            <li>Served Qwen3.6-35B-A3B (NVFP4) locally with vLLM on the GB10's Arm64 platform, bound to localhost only.</li>
+            <li>Connected an OpenClaw agent to the app's pricing tools through a custom skill, with no cloud providers or fallbacks configured.</li>
+            <li>Debugged empty model replies caused by the reasoning step exhausting the token budget, and added a regression test.</li>
+            <li>Built Slack review cards that carry only a review ID, so prices and customer names never leave the machine.</li>
+          </ul>
+          <div class="tags"><span class="tag">vLLM</span><span class="tag">Qwen3.6</span><span class="tag">OpenClaw</span><span class="tag">NemoClaw</span><span class="tag">FastAPI</span><span class="tag">Slack</span><span class="tag">Docker</span></div>
+          <div class="links"><a href="https://github.com/ovevayrus/dealdesk-local">Team repo →</a></div>
+        </article>
+
+        <article class="card">
+          <div class="meta"><span class="badge">Cline × Parallel × Composio</span><span>Open Source AI Week · Oct 2026</span><span>Solo</span></div>
+          <h3>Accessibility Regression Agent</h3>
+          <p>Dependency bots check whether an app still <em>builds</em>. This agent checks whether people can still <em>use</em> it after an update.</p>
+          <ul>
+            <li>Scans the app before and after an update with Playwright and axe-core, and isolates the new accessibility failures.</li>
+            <li>Researches the library's changelog with Parallel and explains who is affected using an open-source LLM.</li>
+            <li>Has Cline write a fix, re-scans to verify it, then files a GitHub issue through Composio after human approval.</li>
+          </ul>
+          <div class="tags"><span class="tag">Playwright</span><span class="tag">axe-core</span><span class="tag">Cline</span><span class="tag">Parallel</span><span class="tag">Composio</span></div>
+          <div class="links"><a href="https://github.com/suhasrahul/silent-breakage-agent">Repo →</a></div>
+        </article>
+
+        <article class="card">
+          <div class="meta"><span class="badge">Cline × Parallel × Composio</span><span>Open Source AI Week · Oct 2026</span><span>Team · Telegram bot owner</span></div>
+          <h3>Fashion Finder Agent</h3>
+          <p>Send a photo of an outfit to a Telegram bot and get real listings you can buy.</p>
+          <ul>
+            <li>Built the Telegram bot: a vision model describes the clothing, and Parallel search finds matching live listings.</li>
+            <li>Added in-chat refinement by color and budget, plus saved favorites.</li>
+            <li>Defined a mock-backend contract so teammates could build their pieces in parallel.</li>
+          </ul>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Telegram Bot API</span><span class="tag">Vision LLM</span><span class="tag">Parallel</span></div>
+          <div class="links"><a href="https://github.com/suhasrahul/fashion-finder-bot">Repo →</a></div>
+        </article>
+
       </div>
-      <p class="meta">Cleveland State University, Cleveland, OH &middot; GPA: 3.9/4.0</p>
-    </article>
-    <article class="card">
-      <div class="card-head">
-        <h3>Bachelor of Engineering in Computer Science</h3>
-        <span class="meta">Aug 2018 &ndash; Jul 2022</span>
-      </div>
-      <p class="meta">Dr. T. Thimmaiah Institute of Technology (VTU), K.G.F, India</p>
-    </article>
+    </div>
   </section>
 
-  <section id="publications">
-    <h2>Publications</h2>
-    <ul class="list">
-      <li>&ldquo;Prediction of Stock Price Using Machine Learning Technique,&rdquo; <em>TIJER</em>, Vol. 10, Issue 5, May 2023</li>
-      <li>&ldquo;Near Field Communication, Its Vulnerability and Countermeasures,&rdquo; <em>IRJET</em>, Vol. 10, Issue 7, July 2023</li>
-    </ul>
+  <!-- PROJECTS -->
+  <section id="projects" aria-labelledby="proj-h">
+    <div class="wrap">
+      <h2 id="proj-h">Projects</h2>
+      <p class="sub">Computer vision, on-device ML and self-hosted agents first, then data and analytics work.</p>
+      <div class="grid">
+
+        <article class="card feature">
+          <div class="meta"><span class="badge green">In progress</span><span>Computer vision · On-device AI</span></div>
+          <h3>Explainable AI Mobile Photo Editor</h3>
+          <p>An offline iOS and Android photo editor whose AI diagnoses each photo, explains what it found in plain language, and animates real, editable sliders to its suggested values. Its design rule is <strong>parameters, never pixels</strong>: every AI component outputs labels or slider values, so results stay reversible and explainable and the app stays under 25 MB.</p>
+          <ul>
+            <li>Diagnoses images from statistics alone: Rec. 709 luminance histograms, clipping, color-cast channel ratios, saturation and Laplacian sharpness.</li>
+            <li>Renders all pixel processing in GLSL fragment shaders, with live preview and full-resolution export from one parameter set.</li>
+            <li>Generates up to 25,000 training labels from MIT-Adobe FiveK by porting the shader to a differentiable PyTorch function and fitting 7 parameters to 5 experts' edits.</li>
+            <li>Trains a MobileNetV3 model that predicts a bounded residual over a rule-based baseline, with out-of-distribution confidence, shipped as INT8 TensorFlow Lite.</li>
+            <li>Evaluated with per-parameter MAE, SSIM and PSNR against baselines, plus a blind preference study.</li>
+          </ul>
+          <div class="tags"><span class="tag">Flutter</span><span class="tag">GLSL</span><span class="tag">PyTorch</span><span class="tag">TFLite INT8</span><span class="tag">MobileNetV3</span><span class="tag">MediaPipe</span></div>
+        </article>
+
+        <article class="card">
+          <div class="meta"><span class="badge green">Running 24/7</span><span>Agentic AI · Infrastructure</span></div>
+          <h3>Self-Hosted Personal AI Agents: Hermes Agent and OpenClaw</h3>
+          <ul>
+            <li>Run Hermes Agent (Nous Research) and OpenClaw as always-on personal agents on my own Proxmox homelab.</li>
+            <li>OpenClaw runs in an isolated Docker container with Telegram integration and multi-model failover; local Ollama models in progress for privacy.</li>
+            <li>The same homelab self-hosts Code Server, Pi-hole, Jellyfin, Samba and Syncthing across LXC containers.</li>
+          </ul>
+          <div class="tags"><span class="tag">Hermes Agent</span><span class="tag">OpenClaw</span><span class="tag">Proxmox</span><span class="tag">LXC</span><span class="tag">Docker</span><span class="tag">Ollama</span></div>
+        </article>
+
+        <article class="card">
+          <div class="meta"><span>Medical imaging</span></div>
+          <h3>Retinal Disease Detection with CNNs</h3>
+          <p>A convolutional neural network for binary classification of retinal fundus images, to support early detection of retinal disease.</p>
+          <div class="tags"><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">CNN</span></div>
+        </article>
+
+        <article class="card">
+          <div class="meta"><span>Applied ML</span></div>
+          <h3>IT Incident SLA Prediction</h3>
+          <ul>
+            <li>Built an ETL pipeline that collapses 141,712 event-log rows into 24,918 incidents, with a leakage audit that limits the model to fields known when a ticket opens.</li>
+            <li>XGBoost raised ROC-AUC from 0.803 to 0.839 and reached 0.80 recall on SLA misses with threshold tuning.</li>
+            <li>Proposed a monitoring plan estimated to prevent about 1,750 SLA breaches a year.</li>
+          </ul>
+          <div class="tags"><span class="tag">pandas</span><span class="tag">scikit-learn</span><span class="tag">XGBoost</span></div>
+        </article>
+
+        <article class="card">
+          <div class="meta"><span>Time series</span><span class="badge">Published in TIJER</span></div>
+          <h3>Stock Market Prediction with LSTMs</h3>
+          <p>An LSTM forecasting model on historical stock data, with moving-average, volatility and technical-analysis features. Reached 95% accuracy measured by RMSE.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">TensorFlow</span><span class="tag">LSTM</span></div>
+        </article>
+
+      </div>
+
+      <h3 style="margin:36px 0 14px">More projects</h3>
+      <div class="compact">
+        <div class="mini"><h4>Health Insurance Cost Prediction</h4><p>Random Forest with 12+ engineered features, tuned with GridSearchCV.</p></div>
+        <div class="mini"><h4>Smart Cities Sustainability</h4><p>Tableau dashboard of 1,000+ data points across 50+ cities.</p></div>
+        <div class="mini"><h4>ShopEase E-Commerce Database</h4><p>Hybrid MySQL and MongoDB design; queries 45% faster.</p></div>
+        <div class="mini"><h4>Hospital Tokenization System</h4><p>Business analysis: root cause, 13-stakeholder map, $1.1–1.3M 3-year estimate.</p></div>
+        <div class="mini"><h4>Agro-Culture Web App</h4><p>Connects farmers directly with consumers. MySQL, JavaScript.</p></div>
+        <div class="mini"><h4>Fun with Polygons</h4><p>Interactive polygon animation in C++ and OpenGL.</p></div>
+      </div>
+      <p class="links" style="margin-top:22px"><a href="https://github.com/suhasrahul?tab=repositories">See all my repositories on GitHub →</a></p>
+    </div>
   </section>
 
-  <section id="certifications">
-    <h2>Certifications</h2>
-    <ul class="list">
-      <li><strong>AWS Certified Cloud Practitioner</strong> &middot; Amazon Web Services &middot; Feb 2026</li>
-      <li><strong>Microsoft Azure Fundamentals (AZ-900)</strong> &middot; Microsoft &middot; Jan 2026</li>
-      <li><strong>Introduction to Machine Learning in Healthcare</strong> &middot; Northeastern University &middot; Jun 2024</li>
-      <li><strong>Google Data Analytics Professional Certificate</strong> &middot; Google &middot; May 2024</li>
-    </ul>
+  <!-- RESEARCH -->
+  <section id="research" aria-labelledby="res-h">
+    <div class="wrap">
+      <h2 id="res-h">Research</h2>
+      <p class="sub">Interests: computer vision and image processing, explainable ML, on-device AI, computational photography, medical image analysis and ML for financial markets.</p>
+      <ol class="pubs">
+        <li>
+          <div class="title">Prediction of Stock Price Using Machine Learning Technique</div>
+          <div><strong>Suhas Rahul</strong>, Sangeetha, Tarun, Jayasurya, Sandeep</div>
+          <div class="venue">Technix International Journal for Engineering Research (TIJER), Vol. 10, Issue 5, pp. 64–68, May 2023</div>
+          <div class="links" style="margin-top:6px"><a href="http://doi.one/10.1729/Journal.36611">DOI: 10.1729/Journal.36611 →</a></div>
+        </li>
+        <li>
+          <div class="title">Near Field Communication, Its Vulnerability and Countermeasures</div>
+          <div><strong>Suhas Rahul</strong>, Sangeetha, Mercy Flora Pretheba</div>
+          <div class="venue">International Research Journal of Engineering and Technology (IRJET), Vol. 10, Issue 7, pp. 473–477, July 2023</div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" aria-labelledby="sk-h">
+    <div class="wrap">
+      <h2 id="sk-h">Skills</h2>
+      <dl class="skills">
+        <dt>Agentic AI and LLMs</dt><dd>OpenClaw, Hermes Agent, NemoClaw, LangGraph, vLLM, Ollama, Groq, Gemini, tool calling, evals, Cline, Composio, Parallel</dd>
+        <dt>Computer vision</dt><dd>Image classification and segmentation, color and tone analysis, histogram analysis, GPU image processing, differentiable rendering, MediaPipe</dd>
+        <dt>Machine learning</dt><dd>PyTorch, TensorFlow, Keras, TensorFlow Lite, scikit-learn, XGBoost, CNNs, MobileNetV3, LSTMs, INT8 quantization, ROC-AUC, MAE, SSIM, PSNR</dd>
+        <dt>Languages</dt><dd>Python, Dart, C++, C, SQL, R, Java, JavaScript, GLSL, Bash</dd>
+        <dt>Mobile and graphics</dt><dd>Flutter, Riverpod, GLSL fragment shaders, OpenGL, Android Studio</dd>
+        <dt>Infra and data</dt><dd>Docker, Linux, Proxmox, LXC, Git, AWS, Azure, MySQL, MongoDB, pandas, NumPy, Tableau, Power BI, ETL</dd>
+      </dl>
+    </div>
+  </section>
+
+  <!-- EDUCATION + CERTS -->
+  <section id="education" aria-labelledby="edu-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="edu-h">Education</h2>
+        <ul class="plain">
+          <li><strong>M.S., Information Systems</strong> · GPA 3.9/4.0<small>Cleveland State University, Cleveland, OH · Aug 2024 – May 2026</small></li>
+          <li><strong>B.E., Computer Science</strong><small>Dr. T. Thimmaiah Institute of Technology (VTU), K.G.F, India · 2018 – 2022</small></li>
+        </ul>
+        <h2 style="margin-top:36px">Leadership</h2>
+        <ul class="plain">
+          <li>Student Head, Entrepreneurship Development Cell</li>
+          <li>Event Management Head, College Fest 2019</li>
+          <li>Core Member, Photography Club</li>
+          <li>1st Prize, Poster Making Competition (IIC and EDC)</li>
+        </ul>
+      </div>
+      <div>
+        <h2>Certifications</h2>
+        <ul class="plain">
+          <li>AWS Certified Cloud Practitioner<small>Amazon Web Services · Feb 2026</small></li>
+          <li>Microsoft Azure Fundamentals (AZ-900)<small>Microsoft · Jan 2026</small></li>
+          <li>Introduction to Machine Learning in Healthcare<small>Northeastern University · Jun 2024</small></li>
+          <li>Google Data Analytics Professional Certificate<small>Google · May 2024</small></li>
+          <li>CCNA: Switching, Routing and Wireless Essentials; Introduction to Networks<small>Cisco · 2021–2022</small></li>
+        </ul>
+      </div>
+    </div>
   </section>
 </main>
 
 <footer id="contact">
   <div class="wrap">
-    <ul>
-      <li><a href="https://github.com/suhasrahul">GitHub</a></li>
-      <li><a href="https://www.linkedin.com/in/suhasrahul">LinkedIn</a></li>
-      <li><a href="mailto:suhasrahulac@gmail.com">suhasrahulac@gmail.com</a></li>
-    </ul>
-    <p>&copy; 2026 Suhas Rahul Sachidanandan</p>
+    <h2>Let's talk</h2>
+    <p class="sub">I'm looking for ML engineering roles in computer vision, on-device AI and agentic systems in the Bay Area or remote.</p>
+    <div class="cta">
+      <a class="btn primary" href="mailto:suhasrahulac@gmail.com">suhasrahulac@gmail.com</a>
+      <a class="btn" href="resume.pdf">Résumé (PDF)</a>
+      <a class="btn" href="https://github.com/suhasrahul">GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/suhasrahul">LinkedIn</a>
+    </div>
+    <p class="fine">Outside work: homelabs, open source and Linux, photography and football. Hayward, California.</p>
   </div>
 </footer>
-
 </body>
 </html>
