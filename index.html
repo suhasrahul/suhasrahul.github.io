@@ -171,6 +171,7 @@
   .card li { margin: 4px 0; }
   .card li::marker, .job li::marker { color: color-mix(in srgb, var(--c, var(--accent)) 80%, var(--overlay)); }
   .card p { margin: 0; }
+  .card code { font-family: var(--mono); font-size: .88em; color: var(--c, var(--accent)); white-space: nowrap; }
   .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
   .tag { font-family: var(--mono); font-size: 12px; color: var(--overlay); padding: 1px 0; }
   .tag:not(:last-child)::after { content: " ·"; color: var(--line-strong); }
@@ -275,7 +276,7 @@
     <ul class="stats">
       <li><b>4</b><span>hackathon builds</span></li>
       <li><b>2</b><span>research papers published</span></li>
-      <li><b>11</b><span>projects built</span></li>
+      <li><b>12</b><span>projects built</span></li>
       <li><b>3.9</b><span>M.S. GPA, Cleveland State</span></li>
     </ul>
   </div>
@@ -454,7 +455,7 @@
   <section id="projects" aria-labelledby="proj-h">
     <div class="wrap">
       <div class="sec-head"><h2 id="proj-h">Projects</h2></div>
-      <p class="sub">Computer vision, on-device ML and self-hosted agents first, then data and analytics work.</p>
+      <p class="sub">Computer vision, on-device ML, macOS tools and self-hosted agents first, then data and analytics work.</p>
       <div class="grid">
 
         <article class="card feature">
@@ -469,6 +470,19 @@
             <li>Evaluated with per-parameter MAE, SSIM and PSNR against baselines, plus a blind preference study.</li>
           </ul>
           <div class="tags"><span class="tag">Flutter</span><span class="tag">GLSL</span><span class="tag">PyTorch</span><span class="tag">TFLite INT8</span><span class="tag">MobileNetV3</span><span class="tag">MediaPipe</span></div>
+        </article>
+
+        <article class="card">
+          <div class="meta"><span class="badge">Released v0.2.0</span><span>macOS · Accessibility</span></div>
+          <h3>HueInvert: Hue-Preserving Dark Mode for Any macOS Window</h3>
+          <p>A menu-bar app that turns a single window dark with <strong>ctrl + I</strong> while keeping every color's hue, so red errors stay red and blue links stay blue. Built for light sensitivity, low vision and eye strain; a macOS take on GNOME's True Color Invert.</p>
+          <ul>
+            <li>Captures the window with ScreenCaptureKit, inverts only HSL lightness in a Metal shader, <code>rgb + (1 − max − min)</code>, and draws it into a click-through overlay synced to the display refresh.</li>
+            <li>Privacy by design: no network code and nothing written to disk; frames live in GPU memory for milliseconds.</li>
+            <li>Ships as a universal DMG with a SwiftUI onboarding guide that detects and repairs stale Screen Recording permissions.</li>
+          </ul>
+          <div class="tags"><span class="tag">Swift</span><span class="tag">ScreenCaptureKit</span><span class="tag">Metal</span><span class="tag">SwiftUI</span><span class="tag">AppKit</span></div>
+          <div class="links"><a href="https://github.com/suhasrahul/HueInvert">Repo →</a><a href="https://github.com/suhasrahul/HueInvert/releases/latest">Download →</a></div>
         </article>
 
         <article class="card">
